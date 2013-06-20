@@ -195,8 +195,6 @@ set background=dark
 colorscheme solarized
 
 " Set the number of colors for the terminal
-" Set the number of lines of the Vim editor
-" Set the number of columns of the Vim editor
 "
 set t_Co=256
 
