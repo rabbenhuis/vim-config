@@ -112,12 +112,15 @@ if has('wildignore')
 	set wildignore=*.o,*.obj
 endif
 
-" If the +cmdline_info feature is available, then show the ruler and 
+" If the +cmdline_info feature is available, then:
+" show the ruler.
 " show (partial) command in the last line of the screen.
+" Highlight the current line.
 "
 if has('cmdline_info')
 	set ruler
 	set showcmd
+	set showmode
 endif
 
 " If the +statusline feature is available, then
@@ -143,6 +146,43 @@ if has('cmdline_info') && has('statusline')
 	set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
 endif
 
+" Set line numbers on.
+" Display the current mode.
+" Set the screen lines to use for the command-line.
+" Hide a buffer when it is abandoned.
+" Configure how backspace acts 
+" Specify the keys that move the cursor left/right
+" Set the number of lines of the Vim editor
+" Set the number of columns of the Vim editor
+"
+set number
+set showmode
+set cmdheight=2
+set hidden
+set backspace=eol,start,indent
+set whichwrap=<,>,h,l
+set lines=50
+set columns=125
+
+" Ignore case when searching.
+" Override ignorecase when the search pattern contains upper case characters.
+" show matching brackets/parenthesis
+" Set how many tenths of seconds to blink to show the matching pattern
+"
+set ignorecase
+set smartcase
+set showmatch
+set matchtime=2
+
+" If the +extra_search feature is available then:
+" Highlight the search result.
+" Find the pattern while typing a search command.
+"
+if has('extra_search')
+	set hlsearch
+	set incsearch
+endif
+
 
 " +----------------------------------------------------------------------------
 " |
@@ -154,3 +194,45 @@ endif
 set background=dark
 colorscheme solarized
 
+" Set the number of colors for the terminal
+" Set the number of lines of the Vim editor
+" Set the number of columns of the Vim editor
+"
+set t_Co=256
+
+" If running in GUI mode, then:
+" Do not include the toolbar.
+" Add tab pages only if there are at least 2 tab pages.
+" Set the label of the GUI tab page.
+" If on Windows then set the GUI Font
+"
+if has('gui_running')
+	set guioptions-=T
+	set guioptions+=e
+	set guitablabel=%M\ %t
+
+	if has('gui_win32')
+		set guifont=Lucida_Console:h10,Courier_New:h10
+	endif
+endif
+
+" If on Windows, then
+" If the +multi_byte_ime feature is available, then
+" Set encoding to utf8.
+" Else
+" If the +multi_byte feature is available, then
+" Set encoding to utf8.
+"
+if has('win32') || has('win64')
+	if has('multi_byte_ime')
+		set encoding=utf8
+	endif
+else
+	if has('multi_byte')
+		set encoding=utf8
+	endif
+endif
+
+" Use Unix as the standard file type
+"
+set fileformats=unix,dos
